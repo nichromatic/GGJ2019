@@ -1118,6 +1118,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2102fb7b1e14f0f40a593caad5fdb986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicTracks:
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 3d8a8ff9f159b5a428ad9408f514ae48, type: 3}
+    source: {fileID: 0}
+    name: nivel1
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 838b3aece6f08864f8c88f9b6a24db82, type: 3}
+    source: {fileID: 0}
+    name: nivel2
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 838b3aece6f08864f8c88f9b6a24db82, type: 3}
+    source: {fileID: 0}
+    name: nivel3
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: d72a41bd0913bea459d8af7a738a16ad, type: 3}
+    source: {fileID: 0}
+    name: nivel4
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 6c9c1ee8348d76c488ea1957a5bf03f9, type: 3}
+    source: {fileID: 0}
+    name: nivel5
+    loop: 1
+    fade: 0
+    currentFade: 0
+  soundEffects: []
 --- !u!4 &127330854
 Transform:
   m_ObjectHideFlags: 0
@@ -25745,7 +25792,7 @@ PrefabInstance:
     - target: {fileID: 7893290611739442892, guid: 6337235719e5a3e4a8cafa99b5cb71fe,
         type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7893290611739442892, guid: 6337235719e5a3e4a8cafa99b5cb71fe,
         type: 3}

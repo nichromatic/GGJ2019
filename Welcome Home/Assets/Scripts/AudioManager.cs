@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    List<Sound> musicTracks = new List<Sound>();
-    List<Sound> soundEffects = new List<Sound>();
-    AudioSource musicChannel = new AudioSource();
+    public List<Sound> musicTracks = new List<Sound>();
+    public List<Sound> soundEffects = new List<Sound>();
+    AudioSource musicChannel;
 
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+        musicChannel = this.gameObject.AddComponent<AudioSource>();
         for (int i = 0; i < soundEffects.Count; i++)
         {
             AudioSource soundSrc = new AudioSource();
@@ -38,5 +39,22 @@ public class AudioManager : MonoBehaviour
         musicChannel.volume = musicTracks.Find(m => m.name == name).volume;
         musicChannel.pitch = musicTracks.Find(m => m.name == name).pitch;
         musicChannel.Play();
+    }
+
+    public void stopMusic()
+    {
+        if (musicChannel.isPlaying)
+        {
+            musicChannel.Stop();
+        }
+    }
+
+    [ContextMenu("Change music")]
+    public void randomMusic()
+    {
+        int i = Random.Range(0, 5);
+        string name = "nivel" + (i + 1);
+        playMusic(name);
+        Debug.Log("Playing music " + (i+1));
     }
 }

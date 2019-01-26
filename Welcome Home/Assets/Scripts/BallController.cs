@@ -50,7 +50,7 @@ public class BallController : MonoBehaviour
         Ray floorRay = new Ray(this.transform.position, new Vector3(0, -1, 0));
         if (Physics.Raycast(floorRay, 0.35f)) {
             onFloor = true;
-            sounds[0].volume = (rb.velocity.magnitude)/25;
+            sounds[0].volume = (rb.velocity.magnitude)/10;
             playSound("rolling");
             isRollingSoundPlaying = true;
         } else
@@ -171,14 +171,14 @@ public class BallController : MonoBehaviour
         {
             if (vel > 6)
             {
-                sounds[1].volume = (vel / 10);
+                sounds[1].volume = vel;
                 playSound("golpe");
             }
         } else
         {
             if (vel > 4)
             {
-                sounds[1].volume = (vel / 10);
+                sounds[1].volume = vel;
                 playSound("golpe");
             }
         }
