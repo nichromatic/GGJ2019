@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    [Header("References")]
+    
     Rigidbody rb;
     Camera cam;
+    [Header("References")]
+    public List<Sound> sounds = new List<Sound>();
+    bool isRollingSoundPlaying = false;
 
     [Header("Physics")]
     public float maxForce;
@@ -28,6 +31,15 @@ public class BallController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         initialCamPos = cam.transform.position;
+        for (int i = 0; i < sounds.Count; i++)
+        {
+            AudioSource audiosrc = this.gameObject.AddComponent<AudioSource>();
+            audiosrc.clip = sounds[i].clip;
+            audiosrc.volume = sounds[i].volume;
+            audiosrc.pitch = sounds[i].pitch;
+            audiosrc.loop = sounds[i].loop;
+            sounds[i].source = audiosrc;
+        }
     }
 
     // Update is called once per frame
@@ -38,8 +50,16 @@ public class BallController : MonoBehaviour
         Ray floorRay = new Ray(this.transform.position, new Vector3(0, -1, 0));
         if (Physics.Raycast(floorRay, 0.35f)) {
             onFloor = true;
+            sounds[0].volume = (rb.velocity.magnitude)/25;
+            playSound("rolling");
         } else
         {
+            if (isRollingSoundPlaying)
+            {
+                playSound("rolling");
+                isRollingSoundPlaying = !sounds[0].Fade(false, Time.deltaTime);
+            }
+
             onFloor = false;
         }
 
@@ -100,5 +120,38 @@ public class BallController : MonoBehaviour
 
         //velocity = rb.velocity;
         //velocityMagnitude = rb.velocity.magnitude;
+    }
+
+    public void playSound(string name)
+    {
+        AudioSource audiosrc = sounds.Find(s => s.name == name).source;
+        if (!audiosrc.loop)
+        {
+            if (audiosrc.isPlaying)
+            {
+                audiosrc.Stop();
+            }
+            audiosrc.Play();
+        } else
+        {
+            if (!audiosrc.isPlaying)
+            {
+                audiosrc.Play();
+            } else
+            {
+                audiosrc.volume = sounds.Find(s => s.name == name).volume;
+            }
+        }
+    }
+
+    public void stopSound (string name)
+    {
+        AudioSource audiosrc = sounds.Find(s => s.name == name).source;
+        audiosrc.Stop();
+    }
+
+    public void fadeOutSound (string name)
+    {
+        AudioSource audiosrc = sounds.Find(s => s.name == name).source;
     }
 }
