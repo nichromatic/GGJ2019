@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    [Header("References")]
     Rigidbody rb;
     Camera cam;
 
+    [Header("Physics")]
     public float maxForce;
     public float minForce;
+    public bool onFloor = false;
+    public float maxVelocity;
+
+    [Header("Mouse wheel zoom")]
+    public float minZoom = 2f;
+    public float maxZoom = 7f;
+    public float sensitivity = 0.5f;
+    public Vector3 initialCamPos;
 
     //public Vector3 velocity;
     //public float velocityMagnitude;
-
-    public bool onFloor = false;
-
-    public float maxVelocity;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        initialCamPos = cam.transform.position;
     }
 
     // Update is called once per frame
@@ -59,6 +66,37 @@ public class BallController : MonoBehaviour
                 }
             }
         }
+
+        // Mouse wheel zoom
+        float currentSize = cam.orthographicSize;
+        float scrollAmount = Input.mouseScrollDelta.y;
+
+        // Si se ha movido la rueda del ratón
+        if (Mathf.Abs(scrollAmount) > 0)
+        {
+            if (scrollAmount >= 1)
+            {
+                currentSize -= sensitivity;
+                //Debug.Log("Zoomed In");
+            }
+            else if (scrollAmount <= -1)
+            {
+                currentSize += sensitivity;
+                //Debug.Log("Zoomed Out");
+            }
+
+            currentSize = Mathf.Clamp(currentSize, minZoom, maxZoom);
+            cam.orthographicSize = currentSize; 
+        }
+
+        // Hacer que la cámara siga a la bola cuando hace zoom
+        float zoomPercentage = (currentSize - minZoom) / (maxZoom - minZoom);
+        //Debug.Log(zoomPercentage);
+
+        Vector3 ballCamPos = this.transform.position + new Vector3(-8.5f, 16f, 15f); ;
+
+        Vector3 camPos = Vector3.Lerp(ballCamPos, initialCamPos, zoomPercentage);
+        cam.transform.position = camPos;
 
         //velocity = rb.velocity;
         //velocityMagnitude = rb.velocity.magnitude;

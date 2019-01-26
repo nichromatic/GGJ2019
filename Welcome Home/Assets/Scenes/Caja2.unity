@@ -6089,7 +6089,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!23 &505884770
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8801,7 +8801,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0.77873516, b: 0, a: 1}
   m_Intensity: 2.5
-  m_Range: 79.83524
+  m_Range: 80
   m_SpotAngle: 68.42513
   m_CookieSize: 10
   m_Shadows:
@@ -8811,7 +8811,7 @@ Light:
     m_Strength: 1
     m_Bias: 0
     m_NormalBias: 0
-    m_NearPlane: 0.3
+    m_NearPlane: 1.28
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -15092,7 +15092,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5db222a43c3b730488fc719d7d92ac9e, type: 2}
+  - {fileID: 2100000, guid: e690545696427e747bd05b0f2cabbd5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15128,7 +15128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318269040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.56, y: 1.75, z: -3.43}
+  m_LocalPosition: {x: -7.05, y: 10.03, z: -4.16}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15164,10 +15164,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxForce: 500
   minForce: 250
-  velocity: {x: 0, y: 0, z: 0}
-  velocityMagnitude: 0
   onFloor: 0
   maxVelocity: 5
+  minZoom: 2
+  maxZoom: 7
+  sensitivity: 0.5
+  initialCamPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1324828233
 GameObject:
   m_ObjectHideFlags: 0
