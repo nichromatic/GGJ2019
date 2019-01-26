@@ -13,6 +13,8 @@ public class BallController : MonoBehaviour
     public Vector3 velocity;
     public float velocityMagnitude;
 
+    public bool onFloor = false;
+
     public float maxVelocity;
 
     void Start()
@@ -24,15 +26,24 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(Input.GetMouseButton(0)){
+        Ray floorRay = new Ray(this.transform.position, new Vector3(0, -1, 0));
+        if (Physics.Raycast(floorRay, 0.35f)) {
+            onFloor = true;
+        } else
+        {
+            onFloor = false;
+        }
+
+        if (Input.GetMouseButton(0) && onFloor)
+        {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray,out hit,LayerMask.GetMask("Escenario")))
+            if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Escenario")))
             {
-                Vector3 projectedClick = Vector3.ProjectOnPlane(hit.point,Vector3.up);
+                Vector3 projectedClick = Vector3.ProjectOnPlane(hit.point, Vector3.up);
                 Vector3 projectedBallPosition = Vector3.ProjectOnPlane(transform.position, Vector3.up);
-                Vector3 dir = projectedClick-projectedBallPosition;
-                float forceMagnitude = Mathf.Clamp(dir.magnitude,minForce,maxForce);
+                Vector3 dir = projectedClick - projectedBallPosition;
+                float forceMagnitude = Mathf.Clamp(dir.magnitude, minForce, maxForce);
                 if (rb.velocity.magnitude <= maxVelocity)
                 {
                     rb.AddForce(dir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
@@ -43,8 +54,8 @@ public class BallController : MonoBehaviour
                     float velocityExtra = Mathf.Abs((maxVelocity - rb.velocity.magnitude));
                     rb.AddForce(-dir * forceMagnitude * Time.deltaTime * velocityExtra, ForceMode.Acceleration);
                 }
-            } 
-		}
+            }
+        }
 
         velocity = rb.velocity;
         velocityMagnitude = rb.velocity.magnitude;

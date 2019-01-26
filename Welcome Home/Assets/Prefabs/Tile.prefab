@@ -11,8 +11,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 39.37008, y: 39.370087, z: 19.685043}
-  m_Center: {x: 0, y: 0, z: 9.842522}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!1 &8470401159722191571
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,11 +101,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4d89d6216bd888a439334f1e151124d2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.025400044
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4d89d6216bd888a439334f1e151124d2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.025400044
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4d89d6216bd888a439334f1e151124d2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4d89d6216bd888a439334f1e151124d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
