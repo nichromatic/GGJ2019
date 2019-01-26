@@ -102,9 +102,9 @@ public class AudioManager : MonoBehaviour
             while (musicChannel.volume < musicFadeInitialVolume)
             {
                 musicChannel.volume += Time.deltaTime / musicFadeMultiplier;
+                yield return null;
             }
             musicFading = false;
-            yield return null;
         }
     }
 }
