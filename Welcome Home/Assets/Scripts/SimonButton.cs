@@ -53,5 +53,6 @@ public class SimonButton : MonoBehaviour
         timesActive--;
         simon.CompareButton(this);
         yield return wait;
+        canPress = true;
     }
 }
