@@ -38,6 +38,7 @@ public class AudioManager : MonoBehaviour
         musicChannel.clip = musicTracks.Find(m => m.name == name).clip;
         musicChannel.volume = musicTracks.Find(m => m.name == name).volume;
         musicChannel.pitch = musicTracks.Find(m => m.name == name).pitch;
+        musicChannel.loop = musicTracks.Find(m => m.name == name).loop;
         musicChannel.Play();
     }
 
