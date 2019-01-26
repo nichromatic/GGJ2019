@@ -7,6 +7,9 @@ public class AudioManager : MonoBehaviour
     public List<Sound> musicTracks = new List<Sound>();
     public List<Sound> soundEffects = new List<Sound>();
     AudioSource musicChannel;
+    float musicFadeMultiplier = 3f;
+    float musicFadeInitialVolume = 0f;
+    bool musicFading = false;
 
     void Start()
     {
@@ -57,5 +60,51 @@ public class AudioManager : MonoBehaviour
         string name = "nivel" + (i + 1);
         playMusic(name);
         Debug.Log("Playing music " + (i+1));
+    }
+
+    [ContextMenu("Fade out music")]
+    public void callFadeOut()
+    {
+        StartCoroutine(fadeOut());
+    }
+
+    [ContextMenu("Fade in music")]
+    public void callFadeIn()
+    {
+        randomMusic();
+        StartCoroutine(fadeIn());
+    }
+
+    public IEnumerator fadeOut()
+    {
+        if (!musicFading)
+        {
+            musicFadeInitialVolume = musicChannel.volume;
+            musicFading = true;
+            while (musicChannel.volume > 0)
+            {
+                musicChannel.volume -= Time.deltaTime / musicFadeMultiplier;
+                yield return null;
+            }
+            musicFading = false;
+            stopMusic();
+            musicChannel.volume = musicFadeInitialVolume;
+        }
+    }
+
+    public IEnumerator fadeIn()
+    {
+        if (!musicFading)
+        {
+            musicFading = true;
+            musicFadeInitialVolume = musicChannel.volume;
+            musicChannel.volume = 0f;
+            while (musicChannel.volume < musicFadeInitialVolume)
+            {
+                musicChannel.volume += Time.deltaTime / musicFadeMultiplier;
+            }
+            musicFading = false;
+            yield return null;
+        }
     }
 }
