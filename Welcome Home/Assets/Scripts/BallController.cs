@@ -10,8 +10,8 @@ public class BallController : MonoBehaviour
     public float maxForce;
     public float minForce;
 
-    public Vector3 velocity;
-    public float velocityMagnitude;
+    //public Vector3 velocity;
+    //public float velocityMagnitude;
 
     public bool onFloor = false;
 
@@ -26,6 +26,8 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Comprobamos si la bola está en el suelo ahora mismo
         Ray floorRay = new Ray(this.transform.position, new Vector3(0, -1, 0));
         if (Physics.Raycast(floorRay, 0.35f)) {
             onFloor = true;
@@ -34,6 +36,7 @@ public class BallController : MonoBehaviour
             onFloor = false;
         }
 
+        // Aplicamos fuerza a la bola si se hace clic y está en el suelo
         if (Input.GetMouseButton(0) && onFloor)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -57,7 +60,7 @@ public class BallController : MonoBehaviour
             }
         }
 
-        velocity = rb.velocity;
-        velocityMagnitude = rb.velocity.magnitude;
+        //velocity = rb.velocity;
+        //velocityMagnitude = rb.velocity.magnitude;
     }
 }
