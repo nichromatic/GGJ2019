@@ -52,12 +52,14 @@ public class BallController : MonoBehaviour
             onFloor = true;
             sounds[0].volume = (rb.velocity.magnitude)/25;
             playSound("rolling");
+            isRollingSoundPlaying = true;
         } else
         {
             if (isRollingSoundPlaying)
             {
-                playSound("rolling");
-                isRollingSoundPlaying = !sounds[0].Fade(false, Time.deltaTime);
+                //playSound("rolling");
+                //isRollingSoundPlaying = !sounds[0].Fade(false, Time.deltaTime);
+                stopSound("rolling");
             }
 
             onFloor = false;
@@ -129,14 +131,20 @@ public class BallController : MonoBehaviour
         {
             if (audiosrc.isPlaying)
             {
+                if (name == "golpe") return;
                 audiosrc.Stop();
             }
+            audiosrc.volume = sounds.Find(s => s.name == name).volume;
+            audiosrc.pitch = sounds.Find(s => s.name == name).pitch;
             audiosrc.Play();
         } else
         {
             if (!audiosrc.isPlaying)
             {
+                audiosrc.volume = sounds.Find(s => s.name == name).volume;
+                audiosrc.pitch = sounds.Find(s => s.name == name).pitch;
                 audiosrc.Play();
+                sounds.Find(s => s.name == name).currentFade = sounds.Find(s => s.name == name).fade;
             } else
             {
                 audiosrc.volume = sounds.Find(s => s.name == name).volume;
@@ -153,5 +161,26 @@ public class BallController : MonoBehaviour
     public void fadeOutSound (string name)
     {
         AudioSource audiosrc = sounds.Find(s => s.name == name).source;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log(collision.relativeVelocity.magnitude);
+        float vel = collision.relativeVelocity.magnitude;
+        if (collision.transform.gameObject.name == "SM_tile" || collision.transform.gameObject.name == "SM_Rampa")
+        {
+            if (vel > 6)
+            {
+                sounds[1].volume = (vel / 10);
+                playSound("golpe");
+            }
+        } else
+        {
+            if (vel > 4)
+            {
+                sounds[1].volume = (vel / 10);
+                playSound("golpe");
+            }
+        }
     }
 }

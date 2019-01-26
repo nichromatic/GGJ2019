@@ -33,10 +33,10 @@ public class Sound
 
         if (fadingIn)
         {
-            volume += desiredVolume / fade;
+            volume += (desiredVolume / fade)*deltaTime;
         } else
         {
-            volume -= desiredVolume / fade;
+            volume -= (desiredVolume / fade)*deltaTime;
         }
         if (currentFade <= 0)
         {
