@@ -47,14 +47,14 @@ public class SimonDice : MonoBehaviour
 
     public IEnumerator GenerateCode()
     {
-            for (int i = 0; i < buttons.Count; i++)
+            for (int i = 0; i < buttons.Count && level > 0; i++)
             {
                 buttons[i].Activate(false);
             }
             for (int i = 0; i < activeButtons[level]; i++)
             {
                 //Activar x botones aleatorios
-                int x = rand.Next(0,5);
+                int x = rand.Next(0,buttons.Count);
                 SimonButton button = buttons[x].UseOnce();
                 //Guardarlos en activos
                 buttonsToPress.Add(button);

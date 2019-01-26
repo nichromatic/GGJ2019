@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &2241442434980769864
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241442434980769863}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2903976, y: 1.5248191, z: 0.4929765}
+  m_Center: {x: -0.6168264, y: 0, z: 0.05549422}
 --- !u!1 &3853162103148422546
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +22,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5968703299898735092}
+  - component: {fileID: 3853162103148422547}
   m_Layer: 0
   m_Name: Caballito
   m_TagString: Untagged
@@ -23,14 +37,33 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3853162103148422546}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.47, y: 2.67, z: -3.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 2241442434980801639}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3853162103148422547
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853162103148422546}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 800de3a5ada32ec42bff62f4722aede6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2241442434980673255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,6 +133,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b02e3653b3326b342ab410e974bbe622, type: 3}
+--- !u!1 &2241442434980769863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: b02e3653b3326b342ab410e974bbe622,
+    type: 3}
+  m_PrefabInstance: {fileID: 2241442434980673255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2241442434980801639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b02e3653b3326b342ab410e974bbe622,

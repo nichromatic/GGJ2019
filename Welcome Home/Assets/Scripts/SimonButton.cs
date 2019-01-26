@@ -44,6 +44,14 @@ public class SimonButton : MonoBehaviour
     public void Activate(bool state)
     {
         canPress = state;
+        if (canPress)
+        {
+            anim.SetTrigger("IdleActive");
+        }
+        else
+        {
+            anim.SetTrigger("IdleInactive");
+        }
     }
 
     public IEnumerator Press()
