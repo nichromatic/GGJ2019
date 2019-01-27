@@ -26,6 +26,7 @@ public class StartNextSceneMenu : MonoBehaviour
     {
         if (!clicked)
         {
+            AudioManager.Instance.playSound("fuego");
             StartCoroutine(NextScene());
             clicked = true;
         }
@@ -37,6 +38,6 @@ public class StartNextSceneMenu : MonoBehaviour
         yield return new WaitForSeconds(3f);
         cam.GetComponent<Animator>().SetTrigger("End");
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
