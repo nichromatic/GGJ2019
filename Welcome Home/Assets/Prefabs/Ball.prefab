@@ -121,6 +121,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a314230c9369a6c4bbeb08a16f494da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - volume: 0.7
+    desiredVolume: 0
+    pitch: 0.8
+    clip: {fileID: 8300000, guid: d217dd505b12fbd4aa559167d10cc42d, type: 3}
+    source: {fileID: 0}
+    name: rolling
+    loop: 1
+    fade: 0.1
+    currentFade: 0
+  - volume: 1
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 3d91192a29f9ec646a11a70515263636, type: 3}
+    source: {fileID: 0}
+    name: golpe
+    loop: 0
+    fade: 0
+    currentFade: 0
   maxForce: 500
   minForce: 250
   onFloor: 0

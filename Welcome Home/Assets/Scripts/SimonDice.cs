@@ -13,6 +13,7 @@ public class SimonDice : MonoBehaviour
     public float timeBeteweenButtons;
     Door door;
     StartButton startButton;
+    public bool firstTime = true;
     int level = 0;
     int Level { get { return level; }
         set { level = value;
@@ -47,10 +48,13 @@ public class SimonDice : MonoBehaviour
 
     public IEnumerator GenerateCode()
     {
-            for (int i = 0; i < buttons.Count && level > 0; i++)
+        
+            for (int i = 0; i < buttons.Count && !firstTime; i++)
             {
                 buttons[i].Activate(false);
             }
+            firstTime = false;
+            yield return wait;
             for (int i = 0; i < activeButtons[level]; i++)
             {
                 //Activar x botones aleatorios

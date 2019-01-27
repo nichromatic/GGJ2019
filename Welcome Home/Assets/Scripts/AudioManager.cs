@@ -10,9 +10,19 @@ public class AudioManager : MonoBehaviour
     float musicFadeMultiplier = 3f;
     float musicFadeInitialVolume = 0f;
     bool musicFading = false;
+    public static AudioManager Instance;
 
-    void Start()
+    void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         DontDestroyOnLoad(this.gameObject);
         musicChannel = this.gameObject.AddComponent<AudioSource>();
         for (int i = 0; i < soundEffects.Count; i++)
@@ -69,9 +79,11 @@ public class AudioManager : MonoBehaviour
     }
 
     [ContextMenu("Fade in music")]
-    public void callFadeIn()
+    public void callFadeIn(string name)
     {
-        randomMusic();
+        //randomMusic();
+        playMusic(name);
+
         StartCoroutine(fadeIn());
     }
 

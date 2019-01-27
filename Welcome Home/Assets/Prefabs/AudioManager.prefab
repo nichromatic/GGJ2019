@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &913241251588864978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913241251588864976}
+  - component: {fileID: 913241251588864979}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &913241251588864976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913241251588864978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &913241251588864979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913241251588864978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2102fb7b1e14f0f40a593caad5fdb986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicTracks:
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 3d8a8ff9f159b5a428ad9408f514ae48, type: 3}
+    source: {fileID: 0}
+    name: nivel1
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 838b3aece6f08864f8c88f9b6a24db82, type: 3}
+    source: {fileID: 0}
+    name: nivel2
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 838b3aece6f08864f8c88f9b6a24db82, type: 3}
+    source: {fileID: 0}
+    name: nivel3
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: d72a41bd0913bea459d8af7a738a16ad, type: 3}
+    source: {fileID: 0}
+    name: nivel4
+    loop: 1
+    fade: 0
+    currentFade: 0
+  - volume: 0.6
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: 6c9c1ee8348d76c488ea1957a5bf03f9, type: 3}
+    source: {fileID: 0}
+    name: nivel5
+    loop: 1
+    fade: 0
+    currentFade: 0
+  soundEffects: []

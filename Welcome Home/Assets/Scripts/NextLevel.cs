@@ -8,10 +8,12 @@ public class NextLevel : MonoBehaviour
     public float time;
     public int sceneNumber;
     Camera cam;
+    public string song;
 
     public void Start()
     {
         cam = FindObjectOfType<Camera>();
+        AudioManager.Instance.callFadeIn(song);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -20,6 +22,7 @@ public class NextLevel : MonoBehaviour
         {
             cam.GetComponent<Animator>().SetTrigger("End");
             StartCoroutine(NextScene());
+            AudioManager.Instance.callFadeOut();
         }
     }
     
