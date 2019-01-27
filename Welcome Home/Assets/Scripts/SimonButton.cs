@@ -10,6 +10,7 @@ public class SimonButton : MonoBehaviour
     public bool canPress = false;
     public Animator anim;
     public SimonDice simon;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class SimonButton : MonoBehaviour
         timesActive = 0;
         wait = new WaitForSeconds(timeBetweenPresses);
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Init(SimonDice controller)
@@ -31,6 +33,7 @@ public class SimonButton : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && canPress)
         {
             StartCoroutine(Press());
+            audioSource.Play();
         }
     }
 
@@ -38,6 +41,7 @@ public class SimonButton : MonoBehaviour
     {
         timesActive++;
         anim.SetTrigger(Constantes.SIMON_BUTTON_ACTIVE);
+        audioSource.Play();
         return this;
     }
 

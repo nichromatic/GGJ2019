@@ -39,6 +39,10 @@ public class AudioManager : MonoBehaviour
         {
             audiosrc.Stop();
         }
+        audiosrc.clip = soundEffects.Find(m => m.name == name).clip;
+        audiosrc.volume = soundEffects.Find(m => m.name == name).volume;
+        audiosrc.pitch = soundEffects.Find(m => m.name == name).pitch;
+        audiosrc.loop = soundEffects.Find(m => m.name == name).loop;
         audiosrc.Play();
     }
 
