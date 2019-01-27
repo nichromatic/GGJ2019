@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallController : MonoBehaviour
 {
     
     Rigidbody rb;
     Camera cam;
+    Vector3 startPos;
+    bool used;
+
     [Header("References")]
     public List<Sound> sounds = new List<Sound>();
     bool isRollingSoundPlaying = false;
@@ -28,6 +32,8 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
+        used = false;
+        startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         initialCamPos = cam.transform.position;
@@ -42,9 +48,30 @@ public class BallController : MonoBehaviour
         }
     }
 
+    public IEnumerator NextScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (Input.GetKey(KeyCode.H) && !used)
+        {
+            if (Input.GetKey(KeyCode.H))
+            {
+                used = true;
+                cam.GetComponent<Animator>().SetTrigger("End");
+                StartCoroutine(NextScene());
+                AudioManager.Instance.callFadeOut();
+            }
+        }
 
         // Comprobamos si la bola está en el suelo ahora mismo
         Ray floorRay = new Ray(this.transform.position, new Vector3(0, -1, 0));
@@ -84,6 +111,7 @@ public class BallController : MonoBehaviour
                 {
                     rb.AddForce(dir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
                     float velocityExtra = Mathf.Abs((maxVelocity - rb.velocity.magnitude));
+                    velocityExtra = Mathf.Clamp(velocityExtra,0,1);
                     rb.AddForce(-dir * forceMagnitude * Time.deltaTime * velocityExtra, ForceMode.Acceleration);
                 }
             }

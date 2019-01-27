@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
         musicChannel = this.gameObject.AddComponent<AudioSource>();
         for (int i = 0; i < soundEffects.Count; i++)
         {
-            AudioSource soundSrc = new AudioSource();
+            AudioSource soundSrc = this.gameObject.AddComponent<AudioSource>();
             soundEffects[i].source = soundSrc;
         }
     }
@@ -44,6 +44,15 @@ public class AudioManager : MonoBehaviour
         audiosrc.pitch = soundEffects.Find(m => m.name == name).pitch;
         audiosrc.loop = soundEffects.Find(m => m.name == name).loop;
         audiosrc.Play();
+    }
+
+    public void stopSound(string name)
+    {
+        AudioSource audiosrc = soundEffects.Find(s => s.name == name).source;
+        if (audiosrc.isPlaying)
+        {
+            audiosrc.Stop();
+        }
     }
 
     public void playMusic(string name)

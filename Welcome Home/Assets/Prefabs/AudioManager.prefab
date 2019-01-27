@@ -65,7 +65,7 @@ MonoBehaviour:
   - volume: 0.6
     desiredVolume: 0
     pitch: 1
-    clip: {fileID: 8300000, guid: 838b3aece6f08864f8c88f9b6a24db82, type: 3}
+    clip: {fileID: 8300000, guid: d72a41bd0913bea459d8af7a738a16ad, type: 3}
     source: {fileID: 0}
     name: nivel3
     loop: 1
@@ -89,4 +89,13 @@ MonoBehaviour:
     loop: 1
     fade: 0
     currentFade: 0
-  soundEffects: []
+  soundEffects:
+  - volume: 1
+    desiredVolume: 0
+    pitch: 1
+    clip: {fileID: 8300000, guid: b0768c531f40ff24c9023d904d34ffef, type: 3}
+    source: {fileID: 0}
+    name: fuego
+    loop: 1
+    fade: 0
+    currentFade: 0

@@ -27,6 +27,6 @@ public class NextLevel : MonoBehaviour
     public IEnumerator NextScene()
     {
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene(sceneNumber);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

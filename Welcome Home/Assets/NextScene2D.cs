@@ -37,7 +37,7 @@ public class NextScene2D : MonoBehaviour
     public IEnumerator NextScene()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // Update is called once per frame

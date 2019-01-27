@@ -18,17 +18,35 @@ EditorBuildSettings:
     path: Assets/Scenes/Caja1.unity
     guid: 9304b719eb462c548bf81937d07754d5
   - enabled: 1
+    path: Assets/Scenes/Escena2D_2.unity
+    guid: c1f0771ff0f86d64f97ce372ee355835
+  - enabled: 1
     path: Assets/Scenes/Caja2.unity
     guid: bb0f34d90fdb08d4ebd75699a3717317
+  - enabled: 1
+    path: Assets/Scenes/Escena2D_3.unity
+    guid: 266a65b7e0de2404bbf6651aeb52d368
   - enabled: 1
     path: Assets/Scenes/Caja3.unity
     guid: 2dc517e9c3ceac64baf942984f371c0a
   - enabled: 1
+    path: Assets/Escena2D_4.unity
+    guid: 6aa2020455bb96049812381569ab21c7
+  - enabled: 1
     path: Assets/Scenes/Caja4.unity
     guid: 38eb8511660f57d449489f50e98f9e8e
   - enabled: 1
+    path: Assets/Scenes/Escena2D_5.unity
+    guid: 3c7956fe2ff06f5428808dd6a034ba7d
+  - enabled: 1
     path: Assets/Scenes/Caja5.unity
     guid: 2ce187d51cd074642aaf233105728f49
+  - enabled: 1
+    path: Assets/Scenes/Escena2D_6.unity
+    guid: 5edabbfea620d354fb1bb39475a56288
+  - enabled: 1
+    path: Assets/Scenes/Escena2D_Final.unity
+    guid: 5821a0c16d08ae24b927c5cea9972329
   - enabled: 0
     path: Assets/Scenes/Caja6.unity
     guid: dad0dac8a3add50488c8dcbf2baa78c7
