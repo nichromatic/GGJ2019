@@ -6353,8 +6353,8 @@ public class iTween : MonoBehaviour
 			if(method == "gizmos"){
 				Gizmos.DrawLine(currPt, prevPt);
 			}else if(method == "handles"){
-				//Debug.LogError("iTween Error: Drawing a path with Handles is temporarily disabled because of compatability issues with Unity 2.6!");
-				UnityEditor.Handles.DrawLine(currPt, prevPt);
+				Debug.LogError("iTween Error: Drawing a path with Handles is temporarily disabled because of compatability issues with Unity 2.6!");
+				//UnityEditor.Handles.DrawLine(currPt, prevPt);
 			}
 			prevPt = currPt;
 		}

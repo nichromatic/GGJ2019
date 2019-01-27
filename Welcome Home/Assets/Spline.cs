@@ -21,8 +21,7 @@ public class Spline : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(255,0,0,1);
-        iTween.DrawPathHandles(path);
-        //iTween.DrawPathHandles(path);
+        iTween.DrawPath(path);
     }
 
 
