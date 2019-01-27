@@ -18,11 +18,7 @@ public class PlayDelay : MonoBehaviour
         audio.Play();
         yield return new WaitForSeconds(2f);
         AudioManager.Instance.callFadeIn("nivel1");
+        AudioManager.Instance.playSound("fuego");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -36,6 +36,7 @@ public class NextSceneLast : MonoBehaviour
     public IEnumerator NextScene()
     {
         AudioManager.Instance.callFadeOut();
+        AudioManager.Instance.stopSound("fuego");
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(0);
     }
