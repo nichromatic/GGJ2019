@@ -44,7 +44,7 @@ public class NextSceneLast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canClick && Input.GetMouseButtonDown(0))
+        if (canClick && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton0)))
         {
             StopCoroutine(loadWait);
             cam.GetComponent<Animator>().SetTrigger("End");

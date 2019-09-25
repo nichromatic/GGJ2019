@@ -146,6 +146,7 @@ public class BallController : MonoBehaviour
         // Mouse wheel zoom
         float currentSize = cam.orthographicSize;
         float scrollAmount = Input.mouseScrollDelta.y;
+        float controllerScrollAmount = Input.GetAxis("ScrollController");
 
         // Si se ha movido la rueda del ratón
         if (Mathf.Abs(scrollAmount) > 0)
@@ -169,7 +170,7 @@ public class BallController : MonoBehaviour
         float zoomPercentage = (currentSize - minZoom) / (maxZoom - minZoom);
         //Debug.Log(zoomPercentage);
 
-        Vector3 ballCamPos = this.transform.position + new Vector3(-8.5f, 16f, 15f); ;
+        Vector3 ballCamPos = this.transform.position + new Vector3(-8.5f, 16f, 15f);
 
         Vector3 camPos = Vector3.Lerp(ballCamPos, initialCamPos, zoomPercentage);
         cam.transform.position = camPos;

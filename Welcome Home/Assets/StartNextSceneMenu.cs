@@ -31,6 +31,17 @@ public class StartNextSceneMenu : MonoBehaviour
         }
     }
 
+    public void Update(){
+
+        if (!clicked && Input.GetKeyDown(KeyCode.JoystickButton0))
+        {
+            AudioManager.Instance.playSound("fuego");
+            image.sprite = newSprite;
+            StartCoroutine(NextScene());
+            clicked = true;
+        }
+    }
+
     public IEnumerator NextScene()
     {
         ps.Play();
