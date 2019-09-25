@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class BallController : MonoBehaviour
 {
-    
+
     Rigidbody rb;
     Camera cam;
     Vector3 startPos;
     bool used;
+    Vector3 joystickDir;
 
     [Header("References")]
     public List<Sound> sounds = new List<Sound>();
@@ -75,12 +76,14 @@ public class BallController : MonoBehaviour
 
         // Comprobamos si la bola está en el suelo ahora mismo
         Ray floorRay = new Ray(this.transform.position, new Vector3(0, -1, 0));
-        if (Physics.Raycast(floorRay, 0.35f)) {
+        if (Physics.Raycast(floorRay, 0.35f))
+        {
             onFloor = true;
-            sounds[0].volume = (rb.velocity.magnitude)/10;
+            sounds[0].volume = (rb.velocity.magnitude) / 10;
             playSound("rolling");
             isRollingSoundPlaying = true;
-        } else
+        }
+        else
         {
             if (isRollingSoundPlaying)
             {
@@ -111,9 +114,32 @@ public class BallController : MonoBehaviour
                 {
                     rb.AddForce(dir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
                     float velocityExtra = Mathf.Abs((maxVelocity - rb.velocity.magnitude));
-                    velocityExtra = Mathf.Clamp(velocityExtra,0,1);
+                    velocityExtra = Mathf.Clamp(velocityExtra, 0, 1);
                     rb.AddForce(-dir * forceMagnitude * Time.deltaTime * velocityExtra, ForceMode.Acceleration);
                 }
+            }
+        }
+
+        float xAxisDir = Input.GetAxis("Horizontal");
+        float yAxisDir = Input.GetAxis("Vertical");
+        if(xAxisDir != 0 || yAxisDir != 0){
+            Vector3 camForwardProyected = Vector3.ProjectOnPlane(cam.transform.forward,Vector3.up).normalized;
+            float angle = Vector3.Angle(Vector3.forward,camForwardProyected);
+            joystickDir.Set(xAxisDir,0,yAxisDir);
+            float joystickTilt = Mathf.Max(joystickDir.magnitude,1);
+            joystickDir.Normalize();
+            joystickDir = Quaternion.Euler(0,angle,0) * joystickDir;
+            float forceMagnitude = Mathf.Lerp(joystickTilt, minForce, maxForce);
+            if (rb.velocity.magnitude <= maxVelocity)
+            {
+                rb.AddForce(joystickDir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
+            }
+            else
+            {
+                rb.AddForce(joystickDir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
+                float velocityExtra = Mathf.Abs((maxVelocity - rb.velocity.magnitude));
+                velocityExtra = Mathf.Clamp(velocityExtra, 0, 1);
+                rb.AddForce(-joystickDir * forceMagnitude * Time.deltaTime * velocityExtra, ForceMode.Acceleration);
             }
         }
 
@@ -136,7 +162,7 @@ public class BallController : MonoBehaviour
             }
 
             currentSize = Mathf.Clamp(currentSize, minZoom, maxZoom);
-            cam.orthographicSize = currentSize; 
+            cam.orthographicSize = currentSize;
         }
 
         // Hacer que la cámara siga a la bola cuando hace zoom
@@ -165,7 +191,8 @@ public class BallController : MonoBehaviour
             audiosrc.volume = sounds.Find(s => s.name == name).volume;
             audiosrc.pitch = sounds.Find(s => s.name == name).pitch;
             audiosrc.Play();
-        } else
+        }
+        else
         {
             if (!audiosrc.isPlaying)
             {
@@ -173,20 +200,21 @@ public class BallController : MonoBehaviour
                 audiosrc.pitch = sounds.Find(s => s.name == name).pitch;
                 audiosrc.Play();
                 sounds.Find(s => s.name == name).currentFade = sounds.Find(s => s.name == name).fade;
-            } else
+            }
+            else
             {
                 audiosrc.volume = sounds.Find(s => s.name == name).volume;
             }
         }
     }
 
-    public void stopSound (string name)
+    public void stopSound(string name)
     {
         AudioSource audiosrc = sounds.Find(s => s.name == name).source;
         audiosrc.Stop();
     }
 
-    public void fadeOutSound (string name)
+    public void fadeOutSound(string name)
     {
         AudioSource audiosrc = sounds.Find(s => s.name == name).source;
     }
@@ -202,7 +230,8 @@ public class BallController : MonoBehaviour
                 sounds[1].volume = vel;
                 playSound("golpe");
             }
-        } else
+        }
+        else
         {
             if (vel > 4)
             {
