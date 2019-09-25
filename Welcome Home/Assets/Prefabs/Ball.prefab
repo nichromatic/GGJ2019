@@ -148,3 +148,6 @@ MonoBehaviour:
   maxZoom: 7
   sensitivity: 0.5
   initialCamPos: {x: 0, y: 0, z: 0}
+  zoomOffsetX: -17
+  zoomOffsetY: 1
+  zoomOffsetZ: 0

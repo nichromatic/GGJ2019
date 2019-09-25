@@ -11,6 +11,7 @@ public class BallController : MonoBehaviour
     Vector3 startPos;
     bool used;
     Vector3 joystickDir;
+    bool loading = false;
 
     [Header("References")]
     public List<Sound> sounds = new List<Sound>();
@@ -33,11 +34,12 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
+        loading = false;
         used = false;
         startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        initialCamPos = cam.transform.position;
+        initialCamPos = cam.transform.parent.position;
         for (int i = 0; i < sounds.Count; i++)
         {
             AudioSource audiosrc = this.gameObject.AddComponent<AudioSource>();
@@ -51,6 +53,7 @@ public class BallController : MonoBehaviour
 
     public IEnumerator NextScene()
     {
+        loading = true;
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -58,20 +61,19 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        Debug.Log(used);
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton3))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        if (Input.GetKey(KeyCode.H) && !used)
+        if ((Input.GetKey(KeyCode.H) || Input.GetKey(KeyCode.JoystickButton6)) && !used)
         {
-            if (Input.GetKey(KeyCode.H))
-            {
                 used = true;
-                cam.GetComponent<Animator>().SetTrigger("End");
+                cam.transform.parent.GetComponent<Animator>().SetTrigger("End");
                 StartCoroutine(NextScene());
                 AudioManager.Instance.callFadeOut();
-            }
+
         }
 
         // Comprobamos si la bola está en el suelo ahora mismo
@@ -122,14 +124,14 @@ public class BallController : MonoBehaviour
 
         float xAxisDir = Input.GetAxis("Horizontal");
         float yAxisDir = Input.GetAxis("Vertical");
-        if(xAxisDir != 0 || yAxisDir != 0){
+        if((xAxisDir != 0 || yAxisDir != 0)  && onFloor){
             Vector3 camForwardProyected = Vector3.ProjectOnPlane(cam.transform.forward,Vector3.up).normalized;
             float angle = Vector3.Angle(Vector3.forward,camForwardProyected);
             joystickDir.Set(xAxisDir,0,yAxisDir);
-            float joystickTilt = Mathf.Max(joystickDir.magnitude,1);
+            float joystickTilt = Mathf.Min(joystickDir.magnitude,1);
             joystickDir.Normalize();
             joystickDir = Quaternion.Euler(0,angle,0) * joystickDir;
-            float forceMagnitude = Mathf.Lerp(joystickTilt, minForce, maxForce);
+            float forceMagnitude = Mathf.Lerp(minForce, maxForce, joystickTilt);
             if (rb.velocity.magnitude <= maxVelocity)
             {
                 rb.AddForce(joystickDir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
@@ -149,14 +151,14 @@ public class BallController : MonoBehaviour
         float controllerScrollAmount = Input.GetAxis("ScrollController");
 
         // Si se ha movido la rueda del ratón
-        if (Mathf.Abs(scrollAmount) > 0)
+        if (Mathf.Abs(scrollAmount) > 0 || Mathf.Abs(controllerScrollAmount) > 0)
         {
-            if (scrollAmount >= 1)
+            if (scrollAmount >= 1 || controllerScrollAmount >= 0.6)
             {
                 currentSize -= sensitivity;
                 //Debug.Log("Zoomed In");
             }
-            else if (scrollAmount <= -1)
+            else if (scrollAmount <= -1 || controllerScrollAmount <= -0.6)
             {
                 currentSize += sensitivity;
                 //Debug.Log("Zoomed Out");
@@ -167,13 +169,18 @@ public class BallController : MonoBehaviour
         }
 
         // Hacer que la cámara siga a la bola cuando hace zoom
-        float zoomPercentage = (currentSize - minZoom) / (maxZoom - minZoom);
-        //Debug.Log(zoomPercentage);
+            float zoomPercentage = (currentSize - minZoom) / (maxZoom - minZoom);
 
         Vector3 ballCamPos = this.transform.position + new Vector3(-8.5f, 16f, 15f);
 
+    if(!loading){
         Vector3 camPos = Vector3.Lerp(ballCamPos, initialCamPos, zoomPercentage);
         cam.transform.position = camPos;
+    }else{
+        cam.transform.localPosition = Vector3.zero;
+        cam.orthographicSize = maxZoom;
+    }
+
 
         //velocity = rb.velocity;
         //velocityMagnitude = rb.velocity.magnitude;
