@@ -24,22 +24,10 @@ ExportedObj/
 *.pdb
 *.opendb
 
-# Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
 # Builds
 *.apk
 *.unitypackage
-Welcome Home/Assets/Scenes/Caja4.unity
-Welcome Home/Assets/Scenes/Caja6.unity
-Welcome Home/Assets/Scenes/Caja4.unity
-Welcome Home/Assets/Scenes/Caja4.unity.meta
-Welcome Home/Assets/Scenes/Caja6.unity
-Welcome Home/Assets/Scenes/Caja6.unity.meta
-Welcome Home/Assets/Scenes/Caja4.unity
-Welcome Home/Assets/Scenes/Caja6.unity
-*.meta
+
