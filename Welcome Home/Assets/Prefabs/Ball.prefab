@@ -142,7 +142,9 @@ MonoBehaviour:
     fade: 0
     currentFade: 0
   maxForce: 1000
+  maxForceController: 500
   minForce: 250
+  minForceController: 250
   onFloor: 0
   maxVelocity: 5
   minZoom: 2

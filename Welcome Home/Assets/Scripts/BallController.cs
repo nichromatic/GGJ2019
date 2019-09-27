@@ -20,7 +20,9 @@ public class BallController : MonoBehaviour
 
     [Header("Physics")]
     public float maxForce;
+    public float maxForceController;
     public float minForce;
+    public float minForceController;
     public bool onFloor = false;
     public float maxVelocity;
 
@@ -109,7 +111,6 @@ public class BallController : MonoBehaviour
                 Vector3 projectedBallPosition = Vector3.ProjectOnPlane(transform.position, Vector3.up);
                 Vector3 dir = projectedClick - projectedBallPosition;
                 float forceMagnitude = Mathf.Clamp(dir.magnitude, minForce, maxForce);
-                dir.Normalize();
                 if (rb.velocity.magnitude <= maxVelocity)
                 {
                     Debug.Log(dir * forceMagnitude * Time.deltaTime);
