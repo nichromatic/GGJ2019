@@ -8,17 +8,20 @@ public class NextLevelEnd : MonoBehaviour
     public float time;
     public int sceneNumber;
     Camera cam;
+    BallController ball;
 
     public void Start()
     {
         cam = FindObjectOfType<Camera>();
+        ball = FindObjectOfType<BallController>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            cam.GetComponent<Animator>().SetTrigger("End");
+            cam.transform.parent.GetComponent<Animator>().SetTrigger("End");
+            ball.loading = true;
             StartCoroutine(NextScene());
         }
     }

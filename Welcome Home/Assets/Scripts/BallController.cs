@@ -11,7 +11,8 @@ public class BallController : MonoBehaviour
     Vector3 startPos;
     bool used;
     Vector3 joystickDir;
-    bool loading = false;
+    [HideInInspector]
+    public bool loading = false;
 
     [Header("References")]
     public List<Sound> sounds = new List<Sound>();
@@ -61,7 +62,7 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(used);
+        //Debug.Log(used);
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton3))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

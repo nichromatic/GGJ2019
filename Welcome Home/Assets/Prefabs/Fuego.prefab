@@ -4729,4 +4729,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  newSprite: {fileID: 21300000, guid: 1efca03b30d9da1449cbc58ca04d8789, type: 3}
+  newSprite: {fileID: 21300000, guid: 5b4c1b119c1c6cb40b4c5f6e7d8542ea, type: 3}

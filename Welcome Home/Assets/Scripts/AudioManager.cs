@@ -82,7 +82,7 @@ public class AudioManager : MonoBehaviour
         int i = Random.Range(0, 5);
         string name = "nivel" + (i + 1);
         playMusic(name);
-        Debug.Log("Playing music " + (i+1));
+        //Debug.Log("Playing music " + (i+1));
     }
 
     [ContextMenu("Fade out music")]
