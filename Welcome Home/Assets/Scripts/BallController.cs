@@ -109,8 +109,10 @@ public class BallController : MonoBehaviour
                 Vector3 projectedBallPosition = Vector3.ProjectOnPlane(transform.position, Vector3.up);
                 Vector3 dir = projectedClick - projectedBallPosition;
                 float forceMagnitude = Mathf.Clamp(dir.magnitude, minForce, maxForce);
+                dir.Normalize();
                 if (rb.velocity.magnitude <= maxVelocity)
                 {
+                    Debug.Log(dir * forceMagnitude * Time.deltaTime);
                     rb.AddForce(dir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
                 }
                 else
@@ -135,6 +137,7 @@ public class BallController : MonoBehaviour
             float forceMagnitude = Mathf.Lerp(minForce, maxForce, joystickTilt);
             if (rb.velocity.magnitude <= maxVelocity)
             {
+                Debug.Log(joystickDir * forceMagnitude * Time.deltaTime);
                 rb.AddForce(joystickDir * forceMagnitude * Time.deltaTime, ForceMode.Acceleration);
             }
             else

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a314230c9369a6c4bbeb08a16f494da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loading: 0
   sounds:
   - volume: 0.7
     desiredVolume: 0
@@ -140,7 +141,7 @@ MonoBehaviour:
     loop: 0
     fade: 0
     currentFade: 0
-  maxForce: 500
+  maxForce: 1000
   minForce: 250
   onFloor: 0
   maxVelocity: 5
@@ -148,6 +149,3 @@ MonoBehaviour:
   maxZoom: 7
   sensitivity: 0.5
   initialCamPos: {x: 0, y: 0, z: 0}
-  zoomOffsetX: -17
-  zoomOffsetY: 1
-  zoomOffsetZ: 0
